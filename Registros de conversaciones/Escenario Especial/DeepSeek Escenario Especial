@@ -1,0 +1,821 @@
+Here's a comprehensive homepage for an investor and finance website with all the requested features:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Finance | Investment Analytics</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --accent-color: #3498db;
+            --profit-color: #2ecc71;
+            --loss-color: #e74c3c;
+            --text-light: #ecf0f1;
+            --text-dark: #2c3e50;
+            --bg-light: #f5f7fa;
+            --border-radius: 12px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: var(--box-shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .user-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+
+        .btn-primary:hover, .btn-outline:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+
+        main {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+
+        .dashboard {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .time-filters {
+            display: flex;
+            gap: 0.5rem;
+            background-color: var(--bg-light);
+            padding: 0.3rem;
+            border-radius: var(--border-radius);
+        }
+
+        .time-filter {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: calc(var(--border-radius) - 4px);
+            background-color: transparent;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .time-filter.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .chart-container {
+            height: 350px;
+            position: relative;
+        }
+
+        .chart {
+            width: 100%;
+            height: 100%;
+        }
+
+        .profit-loss-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+
+        .indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .profit {
+            color: var(--profit-color);
+        }
+
+        .loss {
+            color: var(--loss-color);
+        }
+
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .profit-dot {
+            background-color: var(--profit-color);
+        }
+
+        .loss-dot {
+            background-color: var(--loss-color);
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .market-index {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .index-card {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .index-header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .index-name {
+            font-weight: 600;
+        }
+
+        .index-value {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .index-change {
+            font-size: 0.9rem;
+        }
+
+        .positive {
+            color: var(--profit-color);
+        }
+
+        .negative {
+            color: var(--loss-color);
+        }
+
+        .mini-chart {
+            height: 80px;
+            width: 100%;
+        }
+
+        .search-section {
+            margin-top: 2rem;
+        }
+
+        .search-bar {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-btn {
+            padding: 0 1.2rem;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+        }
+
+        .quick-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .quick-link {
+            padding: 0.5rem 1rem;
+            background-color: var(--bg-light);
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+
+        .quick-link:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-section p, .footer-section a {
+            color: #bdc3c7;
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            background-color: rgba(52, 152, 219, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <div class="logo-icon">QF</div>
+            <h1>Quantum<span>Finance</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" id="nav-dashboard">Dashboard</a></li>
+                <li><a href="#" id="nav-markets">Markets</a></li>
+                <li><a href="#" id="nav-portfolio">Portfolio</a></li>
+                <li><a href="#" id="nav-community">Community</a></li>
+                <li><a href="#" id="nav-news">News</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <button class="btn btn-outline" id="btn-login">Login</button>
+            <button class="btn btn-primary" id="btn-register">Register</button>
+        </div>
+    </header>
+
+    <main>
+        <div class="dashboard">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Investment Performance</h2>
+                    <div class="time-filters">
+                        <button class="time-filter" data-period="1w">1W</button>
+                        <button class="time-filter active" data-period="1m">1M</button>
+                        <button class="time-filter" data-period="3m">3M</button>
+                        <button class="time-filter" data-period="6m">6M</button>
+                        <button class="time-filter" data-period="1y">1Y</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="mainChart" class="chart"></canvas>
+                </div>
+                <div class="profit-loss-indicator">
+                    <div class="indicator">
+                        <div class="indicator-dot profit-dot"></div>
+                        <span class="profit">Profit: <span id="profit-value">+$12,456.78</span></span>
+                    </div>
+                    <div class="indicator">
+                        <div class="indicator-dot loss-dot"></div>
+                        <span class="loss">Loss: <span id="loss-value">-$3,210.45</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Recent Transactions</h2>
+                    <a href="#" id="view-all">View All</a>
+                </div>
+                <div class="transactions-list">
+                    <!-- Mock transaction data would be inserted here by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="card">
+                <h2 class="card-title">Market Indexes</h2>
+                <div class="market-index">
+                    <div class="index-card">
+                        <div class="index-header">
+                            <span class="index-name">IBEX 35</span>
+                            <span class="index-value">9,245.67</span>
+                        </div>
+                        <div class="index-change positive">+1.24%</div>
+                        <div class="mini-chart">
+                            <canvas id="ibexChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="index-card">
+                        <div class="index-header">
+                            <span class="index-name">NYSE</span>
+                            <span class="index-value">16,789.32</span>
+                        </div>
+                        <div class="index-change negative">-0.56%</div>
+                        <div class="mini-chart">
+                            <canvas id="nyseChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="index-card">
+                        <div class="index-header">
+                            <span class="index-name">Shanghai</span>
+                            <span class="index-value">3,245.12</span>
+                        </div>
+                        <div class="index-change positive">+0.89%</div>
+                        <div class="mini-chart">
+                            <canvas id="shanghaiChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card search-section">
+                <h2 class="card-title">Search Businesses</h2>
+                <div class="search-bar">
+                    <input type="text" class="search-input" id="search-input" placeholder="Search companies...">
+                    <button class="search-btn" id="search-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+                <h3 class="card-subtitle">Quick Links</h3>
+                <div class="quick-links">
+                    <a href="#" class="quick-link">Top Gainers</a>
+                    <a href="#" class="quick-link">Top Losers</a>
+                    <a href="#" class="quick-link">Most Active</a>
+                    <a href="#" class="quick-link">New Listings</a>
+                    <a href="#" class="quick-link">Dividend Stocks</a>
+                    <a href="#" class="quick-link">Tech Sector</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Quantum Finance</h3>
+                <p>Quantum Finance provides cutting-edge investment analytics and market insights to help you make informed financial decisions.</p>
+                <p>Our platform combines advanced technology with comprehensive market data to give you the edge in today's competitive markets.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#">Market Overview</a>
+                <a href="#">Investment Strategies</a>
+                <a href="#">Research Reports</a>
+                <a href="#">Economic Calendar</a>
+                <a href="#">Learning Center</a>
+                <a href="#">API Documentation</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </div>
+                        <span>support@quantumfinance.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                        </div>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                        </div>
+                        <span>123 Finance Street, New York, NY 10001</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2023 Quantum Finance. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Mock data for charts
+        const mockData = {
+            mainChart: {
+                '1w': [12000, 12500, 12300, 12700, 12650, 12800, 13000],
+                '1m': [12000, 12200, 12500, 12400, 12600, 12800, 12700, 12900, 13000, 13200, 13100, 13300, 13500, 13400, 13600, 13550, 13700, 13600, 13800, 13750, 13900, 14000, 14200, 14100, 14300, 14500, 14400, 14600, 14550, 14700],
+                '3m': [12000, 12500, 12300, 12700, 12650, 12800, 13000, 13200, 13500, 13800, 14000, 14200, 14500, 14300, 14600, 14800, 15000, 15200, 15500, 15300, 15600, 15800, 16000, 16200, 16500, 16300, 16600, 16800, 17000, 17200, 17500, 17300, 17600, 17800, 18000, 18200, 18500, 18300, 18600, 18800, 19000, 19200, 19500, 19300, 19600, 19800, 20000, 20200, 20500, 20300, 20600, 20800, 21000, 21200, 21500, 21300, 21600, 21800, 22000, 22200, 22500, 22300, 22600, 22800, 23000, 23200, 23500, 23300, 23600, 23800, 24000, 24200, 24500, 24300, 24600, 24800, 25000, 25200, 25500, 25300, 25600, 25800, 26000, 26200, 26500, 26300, 26600, 26800, 27000, 27200],
+                '6m': [12000, 12500, 12300, 12700, 12650, 12800, 13000, 13200, 13500, 13800, 14000, 14200, 14500, 14300, 14600, 14800, 15000, 15200, 15500, 15300, 15600, 15800, 16000, 16200, 16500, 16300, 16600, 16800, 17000, 17200, 17500, 17300, 17600, 17800, 18000, 18200, 18500, 18300, 18600, 18800, 19000, 19200, 19500, 19300, 19600, 19800, 20000, 20200, 20500, 20300, 20600, 20800, 21000, 21200, 21500, 21300, 21600, 21800, 22000, 22200, 22500, 22300, 22600, 22800, 23000, 23200, 23500, 23300, 23600, 23800, 24000, 24200, 24500, 24300, 24600, 24800, 25000, 25200, 25500, 25300, 25600, 25800, 26000, 26200, 26500, 26300, 26600, 26800, 27000, 27200, 27500, 27300, 27600, 27800, 28000, 28200, 28500, 28300, 28600, 28800, 29000, 29200, 29500, 29300, 29600, 29800, 30000, 30200, 30500, 30300, 30600, 30800, 31000, 31200, 31500, 31300, 31600, 31800, 32000, 32200, 32500, 32300, 32600, 32800, 33000, 33200, 33500, 33300, 33600, 33800, 34000, 34200, 34500, 34300, 34600, 34800, 35000, 35200, 35500, 35300, 35600, 35800, 36000, 36200, 36500, 36300, 36600, 36800, 37000, 37200, 37500, 37300, 37600, 37800, 38000, 38200, 38500, 38300, 38600, 38800, 39000, 39200, 39500, 39300, 39600, 39800, 40000, 40200, 40500, 40300, 40600, 40800, 41000, 41200, 41500, 41300, 41600, 41800, 42000, 42200, 42500, 42300, 42600, 42800, 43000, 43200, 43500, 43300, 43600, 43800, 44000, 44200, 44500, 44300, 44600, 44800, 45000, 45200, 45500, 45300, 45600, 45800, 46000, 46200, 46500, 46300, 46600, 46800, 47000, 47200, 47500, 47300, 47600, 47800, 48000, 48200, 48500, 48300, 48600, 48800, 49000, 49200, 49500, 49300, 49600, 49800, 50000],
+                '1y': [12000, 12500, 12300, 12700, 12650, 12800, 13000, 13200, 13500, 13800, 14000, 14200, 14500, 14300, 14600, 14800, 15000, 15200, 15500, 15300, 15600, 15800, 16000, 16200, 16500, 16300, 16600, 16800, 17000, 17200, 17500, 17300, 17600, 17800, 18000, 18200, 18500, 18300, 18600, 18800, 19000, 19200, 19500, 19300, 19600, 19800, 20000, 20200, 20500, 20300, 20600, 20800, 21000, 21200, 21500, 21300, 21600, 21800, 22000, 22200, 22500, 22300, 22600, 22800, 23000, 23200, 23500, 23300, 23600, 23800, 24000, 24200, 24500, 24300, 24600, 24800, 25000, 25200, 25500, 25300, 25600, 25800, 26000, 26200, 26500, 26300, 26600, 26800, 27000, 27200, 27500, 27300, 27600, 27800, 28000, 28200, 28500, 28300, 28600, 28800, 29000, 29200, 29500, 29300, 29600, 29800, 30000, 30200, 30500, 30300, 30600, 30800, 31000, 31200, 31500, 31300, 31600, 31800, 32000, 32200, 32500, 32300, 32600, 32800, 33000, 33200, 33500, 33300, 33600, 33800, 34000, 34200, 34500, 34300, 34600, 34800, 35000, 35200, 35500, 35300, 35600, 35800, 36000, 36200, 36500, 36300, 36600, 36800, 37000, 37200, 37500, 37300, 37600, 37800, 38000, 38200, 38500, 38300, 38600, 38800, 39000, 39200, 39500, 39300, 39600, 39800, 40000, 40200, 40500, 40300, 40600, 40800, 41000, 41200, 41500, 41300, 41600, 41800, 42000, 42200, 42500, 42300, 42600, 42800, 43000, 43200, 43500, 43300, 43600, 43800, 44000, 44200, 44500, 44300, 44600, 44800, 45000, 45200, 45500, 45300, 45600, 45800, 46000, 46200, 46500, 46300, 46600, 46800, 47000, 47200, 47500, 47300, 47600, 47800, 48000, 48200, 48500, 48300, 48600, 48800, 49000, 49200, 49500, 49300, 49600, 49800, 50000, 50200, 50500, 50300, 50600, 50800, 51000, 51200, 51500, 51300, 51600, 51800, 52000, 52200, 52500, 52300, 52600, 52800, 53000, 53200, 53500, 53300, 53600, 53800, 54000, 54200, 54500, 54300, 54600, 54800, 55000, 55200, 55500, 55300, 55600, 55800, 56000, 56200, 56500, 56300, 56600, 56800, 57000, 57200, 57500, 57300, 57600, 57800, 58000, 58200, 58500, 58300, 58600, 58800, 59000, 59200, 59500, 59300, 59600, 59800, 60000, 60200, 60500, 60300, 60600, 60800, 61000, 61200, 61500, 61300, 61600, 61800, 62000, 62200, 62500, 62300, 62600, 62800, 63000, 63200, 63500, 63300, 63600, 63800, 64000, 64200, 64500, 64300, 64600, 64800, 65000, 65200, 65500, 65300, 65600, 65800, 66000, 66200, 66500, 66300, 66600, 66800, 67000, 67200, 67500, 67300, 67600, 67800, 68000, 68200, 68500, 68300, 68600, 68800, 69000, 69200, 69500, 69300, 69600, 69800, 70000, 70200, 70500, 70300, 70600, 70800, 71000, 71200, 71500, 71300, 71600, 71800, 72000, 72200, 72500, 72300, 72600, 72800, 73000, 73200, 73500, 73300, 73600, 73800, 74000, 74200, 74500, 74300, 74600, 74800, 75000, 75200, 75500, 75300, 75600, 75800, 76000, 76200, 76500, 76300, 76600, 76800, 77000, 77200, 77500, 77300, 77600, 77800, 78000, 78200, 78500, 78300, 78600, 78800, 79000, 79200, 79500, 79300, 79600, 79800, 80000, 80200, 80500, 80300, 80600, 80800, 81000, 81200, 81500, 81300, 81600, 81800, 82000, 82200, 82500, 82300, 82600, 82800, 83000, 83200, 83500, 83300, 83600, 83800, 84000, 84200, 84500, 84300, 84600, 84800, 85000, 85200, 85500, 85300, 85600, 85800, 86000, 86200, 86500, 86300, 86600, 86800, 87000, 87200, 87500, 87300, 87600, 87800, 88000, 88200, 88500, 88300, 88600, 88800, 89000, 89200, 89500, 89300, 89600, 89800, 90000, 90200, 90500, 90300, 90600, 90800, 91000, 91200, 91500, 91300, 91600, 91800, 92000, 92200, 92500, 92300, 92600, 92800, 93000, 93200, 93500, 93300, 93600, 93800, 94000, 94200, 94500, 94300, 94600, 94800, 95000, 95200, 95500, 95300, 95600, 95800, 96000, 96200, 96500, 96300, 96600, 96800, 97000, 97200, 97500, 97300, 97600, 97800, 98000, 98200, 98500, 98300, 98600, 98800, 99000, 99200, 99500, 99300, 99600, 99800, 100000]
+            },
+            ibexChart: [9240, 9250, 9230, 9260, 9245, 9255, 9247],
+            nyseChart: [16750, 16800, 16780, 16820, 16800, 16790, 16789],
+            shanghaiChart: [3230, 3240, 3235, 3245, 3240, 3242, 3245]
+        };
+
+        // Initialize main chart
+        const mainCtx = document.getElementById('mainChart').getContext('2d');
+        let mainChart = new Chart(mainCtx, {
+            type: 'line',
+            data: {
+                labels: Array.from({length: mockData.mainChart['1m'].length}, (_, i) => i + 1),
+                datasets: [{
+                    label: 'Portfolio Value',
+                    data: mockData.mainChart['1m'],
+                    borderColor: '#3498db',
+                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                },
+                scales: {
+                    x: {
+                        display: false,
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Initialize index charts
+        function createMiniChart(id, data, color) {
+            const ctx = document.getElementById(id).getContext('2d');
+            return new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: data.length}, (_, i) => i + 1),
+                    datasets: [{
+                        data: data,
+                        borderColor: color,
+                        backgroundColor: 'transparent',
+                        borderWidth: 2,
+                        pointRadius: 0,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            display: false,
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            display: false,
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        const ibexChart = createMiniChart('ibexChart', mockData.ibexChart, '#2ecc71');
+        const nyseChart = createMiniChart('nyseChart', mockData.nyseChart, '#e74c3c');
+        const shanghaiChart = createMiniChart('shanghaiChart', mockData.shanghaiChart, '#2ecc71');
+
+        // Time filter functionality
+        const timeFilters = document.querySelectorAll('.time-filter');
+        timeFilters.forEach(filter => {
+            filter.addEventListener('click', function() {
+                timeFilters.forEach(f => f.classList.remove('active'));
+                this.classList.add('active');
+                
+                const period = this.dataset.period;
+                const data = mockData.mainChart[period];
+                
+                mainChart.data.labels = Array.from({length: data.length}, (_, i) => i + 1);
+                mainChart.data.datasets[0].data = data;
+                mainChart.update();
+                
+                // Update profit/loss values based on period
+                const firstValue = data[0];
+                const lastValue = data[data.length - 1];
+                const profit = lastValue - firstValue;
+                
+                if (profit >= 0) {
+                    document.getElementById('profit-value').textContent = `+$${Math.abs(profit).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                    document.getElementById('loss-value').textContent = '-$0.00';
+                } else {
+                    document.getElementById('profit-value').textContent = '+$0.00';
+                    document.getElementById('loss-value').textContent = `-$${Math.abs(profit).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+                }
+            });
+        });
+
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // In a real app, this would navigate to different sections
+                console.log(`Navigating to: ${this.textContent}`);
+            });
+        });
+
+        // Button functionality
+        document.getElementById('btn-login').addEventListener('click', function() {
+            console.log('Login button clicked');
+            // In a real app, this would open a login modal
+        });
+
+        document.getElementById('btn-register').addEventListener('click', function() {
+            console.log('Register button clicked');
+            // In a real app, this would open a registration modal
+        });
+
+        // Search functionality
+        document.getElementById('search-btn').addEventListener('click', function() {
+            const query = document.getElementById('search-input').value;
+            console.log(`Searching for: ${query}`);
+            // In a real app, this would trigger a search
+        });
+
+        // View all transactions
+        document.getElementById('view-all').addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('View all transactions clicked');
+            // In a real app, this would navigate to the transactions page
+        });
+
+        // Mock transactions data
+        const transactions = [
+            { id: 1, company: 'Apple Inc.', symbol: 'AAPL', type: 'Buy', shares: 10, price: 175.25, date: '2023-05-15' },
+            { id: 2, company: 'Microsoft Corp.', symbol: 'MSFT', type: 'Buy', shares: 5, price: 315.40, date: '2023-05-14' },
+            { id: 3, company: 'Tesla Inc.', symbol: 'TSLA', type: 'Sell', shares: 3, price: 170.80, date: '2023-05-12' },
+            { id: 4, company: 'Amazon.com Inc.', symbol: 'AMZN', type: 'Buy', shares: 2, price: 112.50, date: '2023-05-10' },
+            { id: 5, company: 'Alphabet Inc.', symbol: 'GOOGL', type: 'Buy', shares: 4, price: 120.75, date: '2023-05-08' }
+        ];
+
+        // Render transactions
+        const transactionsList = document.querySelector('.transactions-list');
+        transactions.forEach(tx => {
+            const txElement = document.createElement('div');
+            txElement.className = 'transaction-item';
+            txElement.style.padding = '1rem';
+            txElement.style.borderBottom = '1px solid #eee';
+            txElement.style.display = 'flex';
+            txElement.style.justifyContent = 'space-between';
+            txElement.style.alignItems = 'center';
+            
+            const txTypeClass = tx.type === 'Buy' ? 'profit' : 'loss';
+            
+            txElement.innerHTML = `
+                <div>
+                    <div style="font-weight: 600;">${tx.company} (${tx.symbol})</div>
+                    <div style="font-size: 0.9rem; color: #7f8c8d;">${tx.date}</div>
+                </div>
+                <div style="text-align: right;">
+                    <div class="${txTypeClass}" style="font-weight: 600;">${tx.type} ${tx.shares} shares</div>
+                    <div style="font-size: 0.9rem;">@ $${tx.price.toFixed(2)}</div>
+                </div>
+            `;
+            
+            transactionsList.appendChild(txElement);
+        });
+    </script>
+</body>
+</html>
+```
+
+This comprehensive homepage includes:
+
+1. **Main Features**:
+   - A large interactive chart showing portfolio performance with time period filters (1W, 1M, 3M, 6M, 1Y)
+   - Profit/loss indicators that update when changing time periods
+   - Sidebar with market indexes (IBEX 35, NYSE, Shanghai) showing current values and mini-charts
+   - Search functionality for businesses
+   - Quick links to common sections
+
+2. **Navigation**:
+   - Main navigation bar with Dashboard, Markets, Portfolio, Community, and News sections
+   - User action buttons (Login/Register)
+
+3. **Design Elements**:
+   - Elegant, classy design with rounded edges
+   - Gray and white color scheme with blue accents
+   - Tech-inspired elements while maintaining professionalism
+   - Responsive layout
+
+4. **Footer**:
+   - Contact information including email and phone number
+   - Quick links and about section
+   - Clean, professional presentation
+
+5. **JavaScript**:
+   - Chart.js for all graphing functionality
+   - Mock data for demonstration
+   - Event listeners for all interactive elements
+   - No inline JavaScript or DOMContentLoaded usage
+
+The page is fully self-contained in one file as requested, with all JavaScript properly encapsulated in script tags.
